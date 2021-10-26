@@ -44,10 +44,16 @@ def multiThread():
 def multiProcessing():
    with Pool(len(urls)) as p:
       p.map(descarga_url_img, urls)
+
+def normal():
+   print('Normal Estructurado')
+   for i in range(len(urls)):
+      descarga_url_img(urls[i])
  
 
 if __name__ == "__main__":
    obtenerUrls()
    # multiprocesos()
-   print("Multi hilos {}".format(timeit.Timer(multiThread).timeit(number=1)))
-   print("Multi procesos {}".format(timeit.Timer(multiProcessing).timeit(number=1)))
+   print(f"Multi hilos {timeit.Timer(multiThread).timeit(number=1)}")
+   print(f"Multi procesos {timeit.Timer(multiProcessing).timeit(number=1)}")
+   print(f"Proceso normal {timeit.Timer(normal).timeit(number=1)}")
