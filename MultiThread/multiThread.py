@@ -41,7 +41,6 @@ def multiThread():
       executor.map(descarga_url_img, urls)
 
 def normal():
-   print('Normal Estructurado')
    for i in range(len(urls)):
       descarga_url_img(urls[i])
  
