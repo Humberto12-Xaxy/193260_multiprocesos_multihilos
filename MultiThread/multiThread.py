@@ -1,6 +1,5 @@
 from imgurpython import ImgurClient
 from concurrent.futures import ThreadPoolExecutor
-from multiprocessing import Pool
 import os
 import urllib.request
 import timeit
@@ -40,10 +39,6 @@ def obtenerUrls():
 def multiThread():
    with ThreadPoolExecutor(max_workers=len(urls)) as executor:
       executor.map(descarga_url_img, urls)
- 
-def multiProcessing():
-   with Pool(len(urls)) as p:
-      p.map(descarga_url_img, urls)
 
 def normal():
    print('Normal Estructurado')
@@ -53,7 +48,5 @@ def normal():
 
 if __name__ == "__main__":
    obtenerUrls()
-   # multiprocesos()
    print(f"Multi hilos {timeit.Timer(multiThread).timeit(number=1)}")
-   print(f"Multi procesos {timeit.Timer(multiProcessing).timeit(number=1)}")
    print(f"Proceso normal {timeit.Timer(normal).timeit(number=1)}")
